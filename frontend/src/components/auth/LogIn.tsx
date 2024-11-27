@@ -27,21 +27,18 @@ import { login } from "@/store/slices/authSlice";
 import { AppDispatch, RootState } from "@/store";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
-import OTP from "./OTP";
 
 const LogIn = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const { loading, error, isOtpRequired } = useSelector(
-    (state: RootState) => state.auth
-  );
+  const { error } = useSelector((state: RootState) => state.auth);
 
   const form = useForm<z.infer<typeof logInSchema>>({
     resolver: zodResolver(logInSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: "joh@example.com",
+      password: "securepassword123",
     },
   });
 
@@ -65,15 +62,11 @@ const LogIn = () => {
     }
   }
 
-  if (isOtpRequired) {
-    return <OTP error={error?.error} />;
-  }
-
   return (
     <div className="mt-28 w-full flex justify-center items-center">
       <Card className="w-[350px]">
         <CardHeader>
-          <CardTitle className="text-2xl">Log In</CardTitle>
+          <CardTitle className="text-2xl">Log Injj</CardTitle>
           <CardDescription>
             Deploy your new project in one-click.
           </CardDescription>

@@ -25,7 +25,6 @@ const AppRouter = createBrowserRouter([
             path: "/profile",
             element: <Profile />,
           },
-          // Zid hna ay route khora li bgiti tprotectiha
         ],
       },
       {
@@ -42,11 +41,7 @@ const AppRouter = createBrowserRouter([
           {
             path: "/forgetpassword",
             element: <ForgetPassword />,
-          },
-          {
-            path: "/otp",
-            element: <OTP />,
-          },
+          }
         ],
       },
     ],

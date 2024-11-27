@@ -37,7 +37,6 @@ const SignUp = () => {
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
-      userName: "",
       firstName: "",
       lastName: "",
       email: "",
@@ -47,10 +46,11 @@ const SignUp = () => {
 
   async function onSubmit(userInfo: z.infer<typeof signUpSchema>) {
     setIsSubmitting(true);
+
     try {
       const resultAction = await dispatch(signup(userInfo));
       if (signup.fulfilled.match(resultAction)) {
-        setTimeout(() => navigate("/"), 2000);
+        setTimeout(() => navigate("/"), 300);
       } else if (signup.rejected.match(resultAction)) {
         console.error("failed:", resultAction.error);
       }
@@ -108,23 +108,6 @@ const SignUp = () => {
                       )}
                     />
                   </div>
-                </div>
-              </div>
-              <div>
-                <div className="flex flex-col space-y-1.5">
-                  <FormField
-                    control={form.control}
-                    name="userName"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Username</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Username" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
                 </div>
               </div>
               <div>

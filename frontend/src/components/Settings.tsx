@@ -25,7 +25,7 @@ const Settings = () => {
             Make changes here. Click save when you're done.
           </SheetDescription>
         </SheetHeader>
-        <Security />
+        {/* <Security /> */}
       </SheetContent>
     </Sheet>
   );
