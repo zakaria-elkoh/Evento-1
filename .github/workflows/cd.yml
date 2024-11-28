@@ -8,7 +8,7 @@ on:
 env:
   AWS_REGION: ${{ secrets.AWS_REGION }}
   ECR_REPOSITORY: evento-1
-  ECR_REGISTRY: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+  ECR_REGISTRY: 050451398633.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
 
 jobs:
   deploy:
@@ -38,11 +38,11 @@ jobs:
           # Build Docker image
           docker build -t $ECR_REPOSITORY:$IMAGE_TAG -f ./backend/Dockerfile ./backend
 
-          # Tag image with ECR registry
-          docker tag $ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          # Tag image for ECR (fixed format)
+          docker tag $ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:latest
 
           # Push image to ECR
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
 
 #           # Build a docker container and
 #           # push it to ECR so that it can
