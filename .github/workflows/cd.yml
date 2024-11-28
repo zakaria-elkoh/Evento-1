@@ -1,5 +1,11 @@
 name: Deploy to Amazon ECR & ECS
 
+on:
+  push:
+    branches:
+      - dev
+      - ci/cd-pipeline
+
 env:
   AWS_REGION: ${{ secrets.AWS_REGION }}
   ECR_REGISTRY: 050451398633.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
@@ -9,6 +15,7 @@ env:
 
 jobs:
   deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     environment: production
 
