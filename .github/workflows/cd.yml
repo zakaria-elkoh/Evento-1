@@ -43,7 +43,7 @@ jobs:
         run: |
           aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ECR }}
           docker build -t ${{ secrets.AWS_ECR }}:$IMAGE_TAG -f ./backend/Dockerfile ./backend
-          docker tag ${{ secrets.AWS_ECR }}:$IMAGE_TAG ${{ secrets.AWS_ECR }}/${{ secrets.AWS_ECR }}:$IMAGE_TAG
+          docker tag $ECR_REGISTRY:$IMAGE_TAG ${{ secrets.AWS_ECR }}/${{ secrets.AWS_ECR }}:$IMAGE_TAG
           docker push ${{ secrets.AWS_ECR }}/${{ secrets.AWS_ECR }}:$IMAGE_TAG
 
 #           # Build a docker container and
