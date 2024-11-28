@@ -4,9 +4,9 @@ on:
     branches:
       - dev
 env:
-  AWS_REGION: ${{ secrets.AWS_REGION }} # set this to your preferred AWS region, e.g. us-west-1
+  #   AWS_REGION: ${{ secrets.AWS_REGION }} # set this to your preferred AWS region, e.g. us-west-1
   ECR_REGISTRY: evento-1 # set this to your Amazon ECR registry name
-  AWS_REPOSITORY: ${{ secrets.AWS_ECR }} # set this to your
+#   AWS_REPOSITORY: ${{ secrets.AWS_ECR }} # set this to your
 #   ECS_SERVICE: MY_ECS_SERVICE # set this to your Amazon ECS service name
 #   ECS_CLUSTER: MY_ECS_CLUSTER # set this to your Amazon ECS cluster name
 #   ECS_TASK_DEFINITION:
@@ -30,7 +30,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: $AWS_REGION
+          aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Login to Amazon ECR
         id: login-ecr
@@ -40,10 +40,10 @@ jobs:
         env:
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_REPOSITORY
+          aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ECR }}
           docker build -t $ECR_REPOSITORY:$IMAGE_TAG .
-          docker tag $ECR_REPOSITORY:$IMAGE_TAG $AWS_REPOSITORY/$ECR_REPOSITORY:$IMAGE_TAG
-          docker push $AWS_REPOSITORY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker tag $ECR_REPOSITORY:$IMAGE_TAG ${{ secrets.AWS_ECR }}/$ECR_REPOSITORY:$IMAGE_TAG
+          docker push ${{ secrets.AWS_ECR }}/$ECR_REPOSITORY:$IMAGE_TAG
 
 #           # Build a docker container and
 #           # push it to ECR so that it can
