@@ -5,13 +5,12 @@ import { Event } from './entities/event.entity';
 import { InjectModel } from '@nestjs/mongoose';
 import { isValidObjectId, Model } from 'mongoose';
 import { AwsS3Service } from '../common/aws-s3.service';
-import { GetUser } from 'src/common/decorators/get-user.decorator';
 
 @Injectable()
 export class EventsService {
   constructor(
     @InjectModel('Event') private readonly eventModel: Model<Event>,
-    private readonly AwsS3Service: AwsS3Service,
+    private readonly awsS3Service: AwsS3Service,
   ) {}
 
   async create(
@@ -23,7 +22,7 @@ export class EventsService {
       let imgUrl: string | undefined;
 
       if (file) {
-        imgUrl = await this.AwsS3Service.uploadFile(file);
+        imgUrl = await this.awsS3Service.uploadFile(file);
       }
 
       const newEvent = new this.eventModel({
