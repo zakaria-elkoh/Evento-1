@@ -74,6 +74,10 @@ jobs:
           task-definition: task-definition.json
           service: ${{ env.ECS_SERVICE }}
           cluster: ${{ env.ECS_CLUSTER }}
+      - name: echo cluster and service
+        run: |
+          echo ${{ env.ECS_CLUSTER }}
+          echo ${{ env.ECS_SERVICE }}
 
       - name: Force new deployment
         run: |
