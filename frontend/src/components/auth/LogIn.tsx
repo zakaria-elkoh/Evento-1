@@ -42,10 +42,8 @@ const LogIn = () => {
     },
   });
 
-  // 2. Define a submit handler.
   async function onSubmit(userInfo: z.infer<typeof logInSchema>) {
     setIsSubmitting(true);
-    console.log("userInfo", userInfo);
     try {
       const resultAction = await dispatch(login(userInfo));
       console.log(resultAction);
