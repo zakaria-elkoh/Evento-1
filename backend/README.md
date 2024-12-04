@@ -4,7 +4,7 @@ This document provides an overview of the technologies and dependencies used in 
 
 ---
 
-## Postman Documentation
+## Postman Documentation (end points)
 
 https://web.postman.co/api/:apiId/documentation/32877376-39257cef-2e9b-4b80-bed9-5d53f30ca575/publish?workspaceId=25b532b2-3aba-4afb-8987-97cf21f4f930&requestId=
 
