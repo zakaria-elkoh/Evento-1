@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - dev
-      - ci/cd-pipeline
+      # - ci/cd-pipeline
 
 env:
   AWS_REGION: ${{ secrets.AWS_REGION }}
