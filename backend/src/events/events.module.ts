@@ -11,5 +11,6 @@ import { AwsS3Service } from 'src/common/aws-s3.service';
   ],
   controllers: [EventsController],
   providers: [EventsService, AwsS3Service],
+  exports: [EventsService],
 })
 export class EventsModule {}

@@ -3,11 +3,12 @@ import DefaultLayout from "@/layouts/DefaultLayout";
 import LogIn from "@/components/auth/LogIn";
 import SignUp from "@/components/auth/SignUp";
 import ForgetPassword from "@/components/auth/ForgetPassword";
-import OTP from "@/components/auth/OTP";
 import PrivateRoute from "@/layouts/PrivateRoute";
 import Profile from "@/pages/Profile";
 import PublicRoute from "@/layouts/PublicRoute";
 import Home from "@/pages/Home";
+import Events from "@/pages/Events";
+import EventDetails from "@/pages/EventDetails";
 
 const AppRouter = createBrowserRouter([
   {
@@ -18,12 +19,24 @@ const AppRouter = createBrowserRouter([
         element: <PrivateRoute />,
         children: [
           {
-            path: "/",
+            path: "/home",
             element: <Home />,
           },
           {
             path: "/profile",
             element: <Profile />,
+          },
+          {
+            path: "/",
+            element: <Events />,
+          },
+          {
+            path: "/events",
+            element: <Events />,
+          },
+          {
+            path: "/events/:eventId",
+            element: <EventDetails />,
           },
         ],
       },
@@ -41,7 +54,7 @@ const AppRouter = createBrowserRouter([
           {
             path: "/forgetpassword",
             element: <ForgetPassword />,
-          }
+          },
         ],
       },
     ],
