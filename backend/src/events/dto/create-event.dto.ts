@@ -1,6 +1,7 @@
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateEventDto {
+  _id: string;
   @IsString()
   @IsNotEmpty()
   title: string;

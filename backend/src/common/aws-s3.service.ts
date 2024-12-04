@@ -40,7 +40,6 @@ export class AwsS3Service {
 
       await this.s3Client.send(command);
 
-      // Construct the S3 URL manually
       const region = this.configService.get<string>('AWS_REGION');
       const s3Url = `https://${bucket}.s3.${region}.amazonaws.com/${fileName}`;
 
