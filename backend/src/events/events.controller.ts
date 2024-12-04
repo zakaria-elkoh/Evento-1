@@ -31,12 +31,7 @@ export class EventsController {
     @Body() createEventDto: CreateEventDto,
     @UploadedFile(
       new ParseFilePipe({
-        validators: [
-          // new MaxFileSizeValidator({ maxSize: 3000 }),
-          // new FileTypeValidator({
-          //   fileType: 'image/png',
-          // }),
-        ],
+        validators: [],
       }),
     )
     file: Express.Multer.File,
@@ -49,8 +44,9 @@ export class EventsController {
   findAll(
     @Query('page') page: string = '1',
     @Query('limit') limit: string = '10',
+    @GetUser() user: any,
   ) {
-    return this.eventsService.findAll(+page, +limit);
+    return this.eventsService.findAll(+page, +limit, user);
   }
 
   @Get(':id')

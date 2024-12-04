@@ -1,12 +1,13 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Types } from 'mongoose';
-import { User } from 'src/auth/entities/user.schema';
+import { User } from '../../auth/entities/user.schema';
 // import { User } from '../users/user.schema';
 
 export type EventDocument = HydratedDocument<Event>;
 
 @Schema({ timestamps: true })
 export class Event {
+  _id: string;
   @Prop()
   title: string;
 
