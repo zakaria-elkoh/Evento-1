@@ -20,7 +20,9 @@ const DefaultLayout = () => {
         }}
       />
       <NavBar />
-      <Outlet />
+      <div className="max-w-screen-lg mx-auto">
+        <Outlet />
+      </div>
     </main>
   );
 };
