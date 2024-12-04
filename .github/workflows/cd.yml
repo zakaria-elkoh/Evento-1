@@ -1,9 +1,15 @@
-name: CI/CD Workflow
+name: CD Workflow
 on:
-  pull_request:
+  push:
     branches:
       - dev
-      # - main
+
+env:
+  AWS_REGION: ${{ secrets.AWS_REGION }}
+  ECR_REGISTRY: 050451398633.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+  ECS_CLUSTER: evento
+  ECS_SERVICE: evento
+  ECS_TASK_DEFINITION: evento-1
 
 jobs:
   build-and-test:
