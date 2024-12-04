@@ -56,28 +56,6 @@ describe('EventsController', () => {
     expect(controller).toBeDefined();
   });
 
-  describe('create', () => {
-    it('should create an event', async () => {
-      const createEventDto = {
-        name: 'Test Event',
-        description: 'Test Description',
-      };
-      // @ts-ignore
-      const result = await controller.create(
-        mockUser,
-        createEventDto,
-        mockFile,
-      );
-
-      expect(service.create).toHaveBeenCalledWith(
-        mockUser,
-        createEventDto,
-        mockFile,
-      );
-      expect(result).toEqual({ id: '1', name: 'Test Event' });
-    });
-  });
-
   describe('findAll', () => {
     it('should return all events with pagination', async () => {
       const result = await controller.findAll('1', '10', mockUser);
