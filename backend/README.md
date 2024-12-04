@@ -1,99 +1,123 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Documentation for Technologies Used in the Backend Project
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This document provides an overview of the technologies and dependencies used in this project, along with a brief explanation of their purpose.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+## Core Dependencies
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### [NestJS](https://nestjs.com/)
 
-## Project setup
+A progressive Node.js framework for building efficient and scalable server-side applications. Key features:
 
-```bash
-$ npm install
+- Modular architecture.
+- Dependency injection.
+- Built-in support for middleware and decorators.
+
+### [Mongoose](https://mongoosejs.com/)
+
+A MongoDB object modeling library for Node.js that simplifies schema definition and database operations.
+
+### [@nestjs/mongoose](https://docs.nestjs.com/techniques/mongodb)
+
+NestJS integration for Mongoose to handle MongoDB operations within NestJS modules.
+
+### [RxJS](https://rxjs.dev/)
+
+A library for reactive programming using observables, used extensively within NestJS for handling asynchronous operations.
+
+### [Class-validator](https://github.com/typestack/class-validator)
+
+Provides decorators for validating objects in NestJS, ensuring input data integrity.
+
+### [@nestjs/jwt](https://docs.nestjs.com/security/authentication#jwt-token)
+
+A module to implement JWT-based authentication in NestJS applications.
+
+### [Passport](http://www.passportjs.org/)
+
+Middleware for authentication in Node.js, with strategies such as JWT used for secure login.
+
+### [bcryptjs](https://github.com/dcodeIO/bcrypt.js)
+
+A JavaScript library for hashing passwords securely.
+
+### [dotenv](https://github.com/motdotla/dotenv)
+
+Loads environment variables from a `.env` file, simplifying configuration management.
+
+### [@aws-sdk/client-s3](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/welcome.html)
+
+AWS SDK module for interacting with Amazon S3, used for file storage and uploads.
+
+---
+
+## Development Dependencies
+
+### [TypeScript](https://www.typescriptlang.org/)
+
+A strongly-typed superset of JavaScript used to develop and maintain scalable applications.
+
+### [Jest](https://jestjs.io/)
+
+A testing framework for JavaScript, used for unit testing and test coverage.
+
+### [ts-jest](https://kulshekhar.github.io/ts-jest/)
+
+A TypeScript preprocessor for Jest, enabling TypeScript testing.
+
+### [ESLint](https://eslint.org/)
+
+A static code analysis tool to ensure code quality and consistency.
+
+### [Prettier](https://prettier.io/)
+
+An opinionated code formatter for maintaining consistent code styling.
+
+### [Supertest](https://github.com/visionmedia/supertest)
+
+A testing library for HTTP assertions, often used for end-to-end tests.
+
+### [ts-node](https://github.com/TypeStrong/ts-node)
+
+Enables running TypeScript directly in a Node.js environment.
+
+---
+
+## Scripts
+
+The `package.json` includes several scripts for common tasks:
+
+| Script      | Description                                                     |
+| ----------- | --------------------------------------------------------------- |
+| `start`     | Starts the application in production mode.                      |
+| `start:dev` | Starts the application in development mode with file watching.  |
+| `build`     | Compiles TypeScript code into JavaScript.                       |
+| `test`      | Runs unit tests with Jest.                                      |
+| `test:e2e`  | Executes end-to-end tests.                                      |
+| `lint`      | Lints the codebase with ESLint and attempts auto-fixing issues. |
+| `format`    | Formats the codebase with Prettier.                             |
+
+---
+
+## Testing Configuration
+
+The project uses Jest for unit and end-to-end testing. Key configurations include:
+
+- Test files are identified by the `.spec.ts` suffix.
+- Coverage reports are generated in the `coverage` directory.
+
+---
+
+## Environment Variables
+
+The application uses environment variables to manage sensitive data. These should be stored in a `.env` file. Example variables:
+
+```env
+DATABASE_URI=<your_mongodb_connection_string>
+JWT_SECRET=<your_jwt_secret>
+AWS_ACCESS_KEY_ID=<your_aws_access_key>
+AWS_SECRET_ACCESS_KEY=<your_aws_secret_key>
+AWS_REGION=<your_aws_region>
+S3_BUCKET_NAME=<your_s3_bucket_name>
 ```
-
-## Compile and run the project
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Run tests
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).

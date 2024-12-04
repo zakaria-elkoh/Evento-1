@@ -3,12 +3,12 @@ import { EventsModule } from './events/events.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ParticipantModule } from './participant/participant.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      // envFilePath: '.env',
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
@@ -33,6 +33,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     }),
     EventsModule,
     AuthModule,
+    ParticipantModule,
   ],
   controllers: [],
   providers: [],

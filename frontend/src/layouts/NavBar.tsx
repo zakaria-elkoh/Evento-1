@@ -120,7 +120,6 @@ const NavBar = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
-            <SelectLanguage />
             <ModeToggle />
           </div>
         </div>

@@ -36,7 +36,7 @@ function App() {
 
   if (isLoading) {
     return (
-      <div className="w-full h-screen flex justify-center items-center">
+      <div className="w-full h-screen flex justify-center items-center bg-green-100">
         <h1>Loaging...</h1>
       </div>
     );
