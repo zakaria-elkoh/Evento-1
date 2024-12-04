@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import api from "../../services/api";
+import { toast } from "sonner";
 
 interface Participant {
   _id: string;
@@ -114,7 +115,7 @@ const participantSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // Create Participant
+      // Create
       .addCase(createParticipant.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -128,7 +129,7 @@ const participantSlice = createSlice({
         state.error = action.payload as string;
       })
 
-      // Fetch Participants
+      // Fetch All
       .addCase(fetchParticipants.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -144,7 +145,7 @@ const participantSlice = createSlice({
         state.error = action.payload as string;
       })
 
-      // Fetch Single Participant
+      // Fetch One
       .addCase(fetchParticipantById.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -158,7 +159,7 @@ const participantSlice = createSlice({
         state.error = action.payload as string;
       })
 
-      // Update Participant
+      // Update
       .addCase(updateParticipant.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -178,7 +179,7 @@ const participantSlice = createSlice({
         state.error = action.payload as string;
       })
 
-      // Delete Participant
+      // Delete
       .addCase(deleteParticipant.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -191,6 +192,7 @@ const participantSlice = createSlice({
         if (state.currentParticipant?._id === action.payload) {
           state.currentParticipant = null;
         }
+        toast("Participant has been deleted");
       })
       .addCase(deleteParticipant.rejected, (state, action) => {
         state.loading = false;

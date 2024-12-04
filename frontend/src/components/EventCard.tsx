@@ -27,8 +27,8 @@ const EventCard = ({ event }: EventCardProps) => {
       <div className="center cursor-pointer">
         <div className="article-card relative">
           <div
-            className={`absolute top-4 right-4 text-xl flex items-center gap-2 ${
-              placesLeft > 0 ? "bg-white/60" : "bg-red-500 text-white"
+            className={`absolute top-4 left-4 text-lg flex items-center gap-2 ${
+              placesLeft > 0 ? "bg-white/90" : "bg-red-500 text-white"
             } px-2 py-1 rounded-lg`}
           >
             {placesLeft > 0 ? (

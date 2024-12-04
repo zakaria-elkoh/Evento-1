@@ -14,11 +14,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: any) {
-    // You can add more validation logic here
     return {
       userId: payload.userId,
       email: payload.email,
-      // Add any additional user properties you want to attach to the request
     };
   }
 }

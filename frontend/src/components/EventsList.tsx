@@ -1,10 +1,19 @@
 import { useEffect } from "react";
 import EventCard from "./EventCard";
-import { fetchEvents } from "@/store/slices/eventSlice";
+import { fetchEvents, deleteEvent } from "@/store/slices/eventSlice";
 import { AppDispatch, RootState } from "@/store";
 import { useDispatch, useSelector } from "react-redux";
-import { Loader } from "lucide-react";
+import { Loader, MoreVertical } from "lucide-react";
 import { EventFormPopup } from "./EventFormPopup";
+import { EventUpdatePopup } from "./EventUpdatePopup";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Button } from "./ui/button";
+import { toast } from "sonner";
 
 const EventsList = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -15,6 +24,15 @@ const EventsList = () => {
   useEffect(() => {
     dispatch(fetchEvents({ page: currentPage }));
   }, [dispatch, currentPage]);
+
+  const handleDelete = async (eventId: string) => {
+    try {
+      await dispatch(deleteEvent(eventId)).unwrap();
+      toast.success("Event deleted successfully");
+    } catch (error) {
+      toast.error("Failed to delete event");
+    }
+  };
 
   if (loading) {
     return (
@@ -54,7 +72,31 @@ const EventsList = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
         {events.map((event) => (
-          <EventCard key={event.id} event={event} />
+          <div key={event.id} className="relative">
+            <div className="absolute top-4 right-4 z-10">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" size="icon">
+                    <MoreVertical className="h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  {/* <DropdownMenuItem> */}
+                  <div className="relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50">
+                    <EventUpdatePopup event={event} />
+                  </div>
+                  {/* </DropdownMenuItem> */}
+                  <DropdownMenuItem
+                    className="text-red-600 focus:text-red-600"
+                    onClick={() => handleDelete(event._id)}
+                  >
+                    Delete
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+            <EventCard event={event} />
+          </div>
         ))}
       </div>
 

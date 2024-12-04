@@ -5,6 +5,7 @@ import {
   deleteParticipant,
   updateParticipant,
 } from "@/store/slices/participntSlice";
+import { Toaster } from "./ui/toaster";
 
 const eventDetails = {
   title: "Man City vs Man U",
@@ -70,31 +71,24 @@ const Participants = ({ participants }) => {
 
   return (
     <div className="p-4">
-      {!showOptions ? (
+      <Toaster />
+
+      <div className="space-x-4">
         <button
-          onClick={() => setShowOptions(true)}
-          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors duration-200"
+          onClick={() => setShowTable(!showTable)}
+          className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition-colors duration-200 inline-flex items-center"
         >
-          Show Options
+          <TableIcon className="w-4 h-4 mr-2" />
+          {showTable ? "Hide Table" : "Show Table"}
         </button>
-      ) : (
-        <div className="space-x-4">
-          <button
-            onClick={() => setShowTable(!showTable)}
-            className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition-colors duration-200 inline-flex items-center"
-          >
-            <TableIcon className="w-4 h-4 mr-2" />
-            {showTable ? "Hide Table" : "Show Table"}
-          </button>
-          <button
-            onClick={handleDownloadPDF}
-            className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg transition-colors duration-200 inline-flex items-center"
-          >
-            <Download className="w-4 h-4 mr-2" />
-            Download PDF
-          </button>
-        </div>
-      )}
+        <button
+          onClick={handleDownloadPDF}
+          className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg transition-colors duration-200 inline-flex items-center"
+        >
+          <Download className="w-4 h-4 mr-2" />
+          Download PDF
+        </button>
+      </div>
 
       {showTable && (
         <>
